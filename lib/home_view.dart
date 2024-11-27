@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:lab/base/styles.dart';
+import 'package:lab/base/data.dart';
 
 class HomeView extends StatelessWidget {
-  // final String username;
+  final String username;
 
-  const HomeView({super.key});
-  // const HomeView({super.key, required this.username});
+  const HomeView({super.key, required this.username});
 
   @override
   Widget build(BuildContext context) {
@@ -18,9 +18,9 @@ class HomeView extends StatelessWidget {
             Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Text(
-                    "Hello, Sovisoth",
-                    style: TextStyle(
+                  Text(
+                    "Hello, $username",
+                    style: const TextStyle(
                       fontWeight: FontWeight.w700,
                       fontSize: 20,
                       color: Colors.black87,
@@ -95,7 +95,7 @@ class HomeView extends StatelessWidget {
                       ],
                     ),
                     const Image(
-                      image: AssetImage('lib/assets/fe_logo.jpg'),
+                      image: AssetImage(Data.logo),
                       height: 150,
                       width: 150,
                     )
@@ -130,32 +130,11 @@ class HomeView extends StatelessWidget {
             const SizedBox(height: 15),
             SizedBox(
               height: 150,
-              child: ListView(
+              child: ListView.builder(
                 scrollDirection: Axis.horizontal,
-                children: [
-                  SizedBox(
-                    width: 170,
-                    child: Card(
-                      color: AppStyles.primaryColor,
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-                        child: Column(
-                            children: [
-                              const Image(
-                                image: AssetImage('lib/assets/fe_logo.jpg'),
-                                height: 100,
-                                width: 100,
-                              ),
-                              Text(
-                                'Software Engineering',
-                                style: AppStyles.courseCardStyle
-                              )
-                            ]
-                        ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
+                itemCount: Data.courseData.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return SizedBox(
                     width: 170,
                     child: Card(
                       color: AppStyles.primaryColor,
@@ -164,86 +143,20 @@ class HomeView extends StatelessWidget {
                         child: Column(
                           children: [
                             const Image(
-                              image: AssetImage('lib/assets/fe_logo.jpg'),
+                              image: AssetImage(Data.logo),
                               height: 100,
                               width: 100,
                             ),
                             Text(
-                              'Web Development',
+                              Data.courseData[index],
                               style: AppStyles.courseCardStyle
                             )
                           ]
                         ),
                       ),
                     ),
-                  ),
-                  SizedBox(
-                    width: 170,
-                    child: Card(
-                      color: AppStyles.primaryColor,
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-                        child: Column(
-                          children: [
-                            const Image(
-                              image: AssetImage('lib/assets/fe_logo.jpg'),
-                              height: 100,
-                              width: 100,
-                            ),
-                            Text(
-                              'Database',
-                              style: AppStyles.courseCardStyle
-                            )
-                          ]
-                        ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    width: 170,
-                    child: Card(
-                      color: AppStyles.primaryColor,
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-                        child: Column(
-                          children: [
-                            const Image(
-                              image: AssetImage('lib/assets/fe_logo.jpg'),
-                              height: 100,
-                              width: 100,
-                            ),
-                            Text(
-                              'Java',
-                              style: AppStyles.courseCardStyle
-                            )
-                          ]
-                        ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    width: 170,
-                    child: Card(
-                      color: AppStyles.primaryColor,
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-                        child: Column(
-                          children: [
-                            const Image(
-                              image: AssetImage('lib/assets/fe_logo.jpg'),
-                              height: 100,
-                              width: 100,
-                            ),
-                            Text(
-                                'C++',
-                                style: AppStyles.courseCardStyle
-                            )
-                          ]
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
+                  );
+                }
               ),
             ),
           ],

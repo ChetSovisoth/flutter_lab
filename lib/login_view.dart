@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lab/base/styles.dart';
 import 'package:lab/home_view.dart';
+import 'package:lab/base/data.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -11,11 +12,13 @@ class LoginView extends StatefulWidget {
 
 class LoginViewState extends State<LoginView> {
   final TextEditingController getUsernameController = TextEditingController();
+  final TextEditingController getPasswordController = TextEditingController();
 
   @override
   void dispose() {
     // Clean up the controller when the widget is disposed.
     getUsernameController.dispose();
+    getPasswordController.dispose();
     super.dispose();
   }
 
@@ -32,7 +35,7 @@ class LoginViewState extends State<LoginView> {
               height: 150,
               decoration: const BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage('lib/assets/login.jpg'),
+                  image: AssetImage(Data.loginIcon),
                 ),
               ),
             ),
@@ -64,6 +67,7 @@ class LoginViewState extends State<LoginView> {
 
             TextField(
               obscureText: true,
+              controller: getPasswordController,
               decoration: InputDecoration(
                 border: const OutlineInputBorder(
                   borderRadius: BorderRadius.all(Radius.circular(20)),
@@ -80,20 +84,31 @@ class LoginViewState extends State<LoginView> {
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: () {
-                  // String username = getUsernameController.text;
-                  // if (username.isEmpty) {
-                  //   ScaffoldMessenger.of(context).showSnackBar(
-                  //    const SnackBar(content: Text("Please enter a username or email")),
-                  //   );
-                  // } else {
+                  String username = getUsernameController.text;
+                  String password = getPasswordController.text;
+                  if (username.isEmpty && password.isEmpty) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text("Please enter username and password")),
+                    );
+                  }
+                  else if (username.isEmpty) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                     const SnackBar(content: Text("Please enter a username or email")),
+                    );
+                  }
+                  else if (password.isEmpty) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text("Please enter a password")),
+                    );
+                  }
+                  else {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        // builder: (context) => HomeView(username: username),
-                        builder: (context) => const HomeView(),
+                        builder: (context) => HomeView(username: username),
                       ),
                     );
-                  // }
+                  }
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: AppStyles.primaryColor,
