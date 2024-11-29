@@ -157,7 +157,7 @@ class LoginViewState extends State<LoginView> {
                   height: 40,
                 ),
                 Image.network(
-                  "https://e7.pngegg.com/pngimages/670/159/png-clipart-facebook-logo-social-media-facebook-computer-icons-linkedin-logo-facebook-icon-media-internet-thumbnail.png",
+                  "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/2023_Facebook_icon.svg/900px-2023_Facebook_icon.svg.png",
                   width: 45,
                   height: 45,
                 ),
