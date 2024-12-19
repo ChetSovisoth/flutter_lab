@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lab/base/styles.dart';
-import 'package:lab/home_view.dart';
+import 'package:lab/screens/home_view.dart';
 import 'package:lab/base/data.dart';
 
 class LoginView extends StatefulWidget {
